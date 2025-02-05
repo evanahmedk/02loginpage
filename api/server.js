@@ -1,12 +1,12 @@
 import fetch from 'node-fetch';
 
 export default async function handler(req, res) {
+    console.log('API endpoint hit'); // Log when the endpoint is accessed
+
     // Set CORS headers
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'POST');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-
-    console.log('API endpoint hit'); // Log when the endpoint is accessed
 
     if (req.method !== 'POST') {
         console.log('Invalid method:', req.method);
