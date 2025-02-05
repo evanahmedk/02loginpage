@@ -72,8 +72,14 @@
       e.preventDefault(); // Prevent the default form submission
 
       // Get the email and password values from the form
-      const email = document.getElementById('username').value;
-      const password = document.getElementById('password').value;
+      const email = document.getElementById('username').value.trim();
+      const password = document.getElementById('password').value.trim();
+
+      // Validate input
+      if (!email || !password) {
+        alert('Please enter both email and password.');
+        return;
+      }
 
       try {
         // Send the data to the /api/submit endpoint
@@ -89,11 +95,12 @@
         if (response.ok) {
           alert('Login successful!'); // Show success message
         } else {
-          alert('An error occurred.'); // Show error message
+          const errorData = await response.json();
+          alert(`An error occurred: ${errorData.error || 'Unknown error'}`); // Show error message
         }
       } catch (error) {
         console.error('Error:', error);
-        alert('An unexpected error occurred.');
+        alert('An unexpected error occurred. Please try again later.');
       }
     });
   </script>
