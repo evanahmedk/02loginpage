@@ -1,6 +1,11 @@
 import fetch from 'node-fetch';
 
 export default async function handler(req, res) {
+    // Set CORS headers to allow cross-origin requests
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'POST');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+
     // Ensure the request method is POST
     if (req.method !== 'POST') {
         return res.status(405).json({ error: 'Method not allowed' });
