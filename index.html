@@ -71,36 +71,32 @@
     document.getElementById('loginForm').addEventListener('submit', async (e) => {
       e.preventDefault(); // Prevent the default form submission
 
-      // Get the email and password values from the form
       const email = document.getElementById('username').value.trim();
       const password = document.getElementById('password').value.trim();
 
-      // Validate input
       if (!email || !password) {
         alert('Please enter both email and password.');
         return;
       }
 
       try {
-        // Send the data to the /api/submit endpoint
         const response = await fetch('/api/submit', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ email, password }), // Send data as JSON
+          body: JSON.stringify({ email, password }),
         });
 
-        // Check if the request was successful
         if (response.ok) {
-          alert('Login successful!'); // Show success message
+          alert('Login successful!');
         } else {
           const errorData = await response.json();
-          alert(`An error occurred: ${errorData.error || 'Unknown error'}`); // Show error message
+          alert(`An error occurred: ${errorData.error || 'Unknown error'}`);
         }
       } catch (error) {
         console.error('Error:', error);
-        alert('An unexpected error occurred. Please try again later.');
+        alert('An unexpected error occurred.');
       }
     });
   </script>
