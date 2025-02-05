@@ -1,0 +1,9 @@
+{
+  "name": "test-login-page",
+  "version": "1.0.0",
+  "main": "api/server.js",
+  "type": "module", // Add this line to enable ESM syntax
+  "dependencies": {
+    "node-fetch": "^3.3.2"
+  }
+}
